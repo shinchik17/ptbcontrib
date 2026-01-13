@@ -87,9 +87,9 @@ def setup_roles(application: Application) -> Roles:
 
 
 _CCT = TypeVar("_CCT", bound=CallbackContext)
+RT = TypeVar("RT")
 
-
-class RolesHandler(BaseHandler[Update, _CCT]):
+class RolesHandler(BaseHandler[Update, _CCT, RT]):
     """
     A handler that acts as wrapper for existing handler classes allowing to add roles for
     user access management. You must call :meth:`setup_roles` before this handler can work.
@@ -111,7 +111,7 @@ class RolesHandler(BaseHandler[Update, _CCT]):
     """
 
     def __init__(
-        self, handler: BaseHandler[Update, _CCT], roles: Union[Role, InvertedRole, None]
+        self, handler: BaseHandler[Update, _CCT, RT], roles: Union[Role, InvertedRole, None]
     ) -> None:
         self.handler = handler
         self.roles: Union[Role, InvertedRole, None] = roles
