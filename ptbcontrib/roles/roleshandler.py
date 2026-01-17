@@ -89,6 +89,7 @@ def setup_roles(application: Application) -> Roles:
 _CCT = TypeVar("_CCT", bound=CallbackContext)
 RT = TypeVar("RT")
 
+
 class RolesHandler(BaseHandler[Update, _CCT, RT]):
     """
     A handler that acts as wrapper for existing handler classes allowing to add roles for
